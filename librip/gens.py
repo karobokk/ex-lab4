@@ -10,15 +10,28 @@ import random
 # field(goods, 'title') должен выдавать 'Ковер', 'Диван для отдыха'
 # field(goods, 'title', 'price') должен выдавать {'title': 'Ковер', 'price': 2000}, {'title': 'Диван для отдыха', 'price': 5300}
 
-def field(items, *args):
-    assert len(args) > 0
-    # Необходимо реализовать генератор 
+def field(list,*args):
+    for i in list:
+        
+        if any(args) :
+            tm={}
+            for arg in args:
+                if i[arg]!=None:
+                    tm[arg]=i[arg]
+            yield tm
+        else :
+            for k, w  in i.items():
+                if w!=None :
+                    yield {k:w}
 
 
 # Генератор списка случайных чисел
 # Пример:
 # gen_random(1, 3, 5) должен выдать примерно 2, 2, 3, 2, 1
 # Hint: реализация занимает 2 строки
-def gen_random(begin, end, num_count):
-    pass
-    # Необходимо реализовать генератор
+
+def gen_random(begin,end,quantity):
+    i=0
+    while i<quantity:
+        yield random.randint(begin,end)
+        i+=1

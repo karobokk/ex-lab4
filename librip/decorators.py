@@ -3,6 +3,23 @@
 # Если функция вернула список (list), то значения должны выводиться в столбик
 # Если функция вернула словарь (dict), то ключи и значения должны выводить в столбик через знак равно
 # Пример из ex_4.py:
+
+def print_result(accept_func):
+    def wrap_acep_arg(*arg,**kwargs): 
+        value=accept_func(*arg,**kwargs)
+        print(accept_func.__name__)
+        if type(value) is dict:
+            for k,w in value.items():
+                print('{} = {}'.format(k, w))
+        elif type(value) is list:
+            for k in value:
+                print(k)
+        else:
+            print(value)
+        return value
+    return wrap_acep_arg
+        
+
 # @print_result
 # def test_1():
 #     return 1
